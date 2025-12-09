@@ -16,8 +16,42 @@ app.use(cors({
 app.use(express.json()); // Body parser
 
 // Define routes
-router.get('/hello', (req, res) => {
-  res.send('Hello World from serverless express!');
+router.get('/metrics', (req, res) => {
+  const metricsData = {
+    metrics: [
+      {
+        id: "addressable_market",
+        value: "$43.0M",
+        title: "Addressable Market",
+        tooltip: "Estimated total spend potential based on market surveys and client propensity data. Represents the maximum possible market share for this offering."
+      },
+      {
+        id: "current_pipeline",
+        value: "$184.1M",
+        title: "Current Pipeline",
+        tooltip: "Total value of opportunities currently in the Interact or Propose stages in Salesforce. Reflects near-term revenue potential for this offering."
+      },
+      {
+        id: "fytd_revenue",
+        value: "$0.0M",
+        title: "FYTD Revenue",
+        tooltip: "Total revenue from all won opportunities for this offering, fiscal year to date."
+      },
+      {
+        id: "connected_growth",
+        value: "$0.0M",
+        title: "Pull Through",
+        tooltip: "Total value generated when an opportunity is sourced by one offering but sold and delivered by another. Indicates connected selling and collaborative growth."
+      },
+      {
+        id: "offering_performance_index",
+        value: "Coming soon",
+        title: "Proficiency Index",
+        tooltip: "Readiness score (1-5) based on four dimensions: go-to-market strategy, delivery methodology, team optimization, and people management."
+      }
+    ]
+  };
+  res.json(metricsData);
 });
 
 router.post('/jira', async (req, res) => {
