@@ -15,31 +15,36 @@ app.use(cors({
 }));
 app.use(express.json()); // Body parser
 
+const getRandomValue = (min, max) => {
+  const value = (Math.random() * (max - min) + min).toFixed(1);
+  return `$${value}M`;
+};
+
 // Define routes
 router.get('/metrics', (req, res) => {
   const metricsData = {
     metrics: [
       {
         id: "addressable_market",
-        value: "$43.0M",
+        value: getRandomValue(30, 50),
         title: "Addressable Market",
         tooltip: "Estimated total spend potential based on market surveys and client propensity data. Represents the maximum possible market share for this offering."
       },
       {
         id: "current_pipeline",
-        value: "$184.1M",
+        value: getRandomValue(150, 200),
         title: "Current Pipeline",
         tooltip: "Total value of opportunities currently in the Interact or Propose stages in Salesforce. Reflects near-term revenue potential for this offering."
       },
       {
         id: "fytd_revenue",
-        value: "$0.0M",
+        value: getRandomValue(0, 10),
         title: "FYTD Revenue",
         tooltip: "Total revenue from all won opportunities for this offering, fiscal year to date."
       },
       {
         id: "connected_growth",
-        value: "$0.0M",
+        value: getRandomValue(0, 5),
         title: "Pull Through",
         tooltip: "Total value generated when an opportunity is sourced by one offering but sold and delivered by another. Indicates connected selling and collaborative growth."
       },
